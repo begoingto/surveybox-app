@@ -1,0 +1,37 @@
+[sb-custom="creator-nav"] > div {
+    @apply bg-transparent w-full overflow-visible p-0 rounded-none lg:w-auto lg:p-2 lg:rounded;
+}
+
+[sb-custom="creator-nav"] ul {
+    @apply flex flex-row w-full justify-center items-center lg:block lg:w-auto;
+}
+
+[sb-custom="creator-nav"] ul li{
+    @apply !mt-0 lg:!mt-2;
+}
+
+[sb-custom="creator-nav"] ul li a{
+    @apply flex-col space-y-2 md:text-sm rounded-none lg:rounded lg:flex-row text-xs;
+}
+[sb-custom="creator-nav"] ul li a span{
+    @apply px-0 sm:px-2;
+}
+[sb-custom="creator-nav"] ul li a svg{
+    @apply w-4 h-4;
+}
+
+.apexcharts-legend{
+    @apply text-start;
+}
+
+.apexcharts-legend-text {
+    @apply dark:!text-white ;
+}
+
+.apexcharts-text.apexcharts-pie-label{
+    @apply !fill-gray-100;
+}
+
+.sb-pagination nav ul{
+    @apply flex-wrap;
+}

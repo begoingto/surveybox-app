@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "title": "Which is your favorite fruit of all time?",
+    "total": 335
+  },
+  {
+    "id": 2,
+    "title": "Which is your favorite fruit of all time?",
+    "total": 450
+  },
+  {
+    "id": 3,
+    "title": "Which is your favorite teacher?",
+    "total": 200
+  },
+  {
+    "id": 4,
+    "title": "Which is your favorite Sport?",
+    "total": 200
+  },
+  {
+    "id": 5,
+    "title": "Which is your favorite artist?",
+    "total": 200
+  }
+]

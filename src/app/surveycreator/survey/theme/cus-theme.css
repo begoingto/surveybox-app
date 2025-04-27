@@ -1,0 +1,14 @@
+.theme-content * {
+    font-size: 11px !important;
+}
+label.border.border-slate-400.w-full.rounded-xl{
+    @apply p-1
+}
+
+label.border.border-slate-400.w-full.rounded-xl > input {
+    @apply w-3 h-3;
+}
+
+.theme-content > div {
+    @apply p-2;
+}

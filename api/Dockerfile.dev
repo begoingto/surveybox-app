@@ -1,0 +1,13 @@
+ARG $ARG_PORT=8081
+
+FROM gradle:7.5.1-jdk17 AS builder
+WORKDIR /app
+COPY --chown=gradle:gradle api/ .
+RUN gradle build --no-daemon
+
+FROM openjdk:17-jdk-alpine AS runtime
+WORKDIR /app
+VOLUME /tmp/files
+RUN apk update && apk add -yq fontconfig ttf-dejavu
+COPY --from=builder /app/build/libs/*.jar /app/app.jar
+EXPOSE ${ARG_PORT}

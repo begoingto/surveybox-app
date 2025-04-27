@@ -1,0 +1,10 @@
+.sb-input input{
+    @apply border-0 focus:ring-0;
+    text-align: center;
+}
+.info-input input{
+    @apply border-0 focus:ring-0;
+}
+.sm-input input{
+    text-align: center;
+}

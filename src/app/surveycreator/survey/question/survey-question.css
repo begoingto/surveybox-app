@@ -1,0 +1,48 @@
+[data-testid="modal"] > div.max-w-7xl{
+    @apply max-w-full;
+}
+
+.an-input input {
+    @apply rounded-tr-none rounded-br-none;
+}
+
+.begoingto-react-select > div {
+    @apply dark:bg-gray-800 dark:text-white;
+}
+
+.begoingto-react-select  [class*="singleValue"] {
+    @apply dark:text-white;
+}
+
+.begoingto-react-select  [class*="menu"] [class*="option"] {
+    @apply dark:hover:bg-gray-700 dark:bg-gray-800;
+}
+
+.begoingto-react-select  [class*="Input"] {
+    @apply dark:text-white relative;
+}
+
+.begoingto-react-select  [class*="Input"] > input,
+.begoingto-react-select  [class*="control"] div[data-value] input{
+    @apply absolute top-0 left-0 w-full h-full;
+}
+
+.begoingto-react-select  [class*="control"] div[data-value] {
+    @apply dark:text-white relative;
+}
+
+.be-custom-pagination ul {
+    @apply !mt-0 flex-wrap;
+}
+
+.custom-select select{
+    @apply border-r-0 rounded-r-none;
+}
+
+.custom-select select:not([size]){
+    @apply !pr-6;
+}
+
+.custom-select + div input{
+    @apply rounded-l-none;
+}

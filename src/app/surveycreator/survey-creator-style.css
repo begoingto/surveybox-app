@@ -1,0 +1,23 @@
+label {
+    @apply !text-base;
+}
+* {
+    font-family: 'Kantumruy Pro', sans-serif !important;
+}
+
+input {
+    @apply !text-base;
+}
+
+[aria-label="survey-sidebar"] a {
+    @apply md:!text-base;
+}
+
+td,th{
+    font-family: 'Kantumruy Pro', sans-serif !important;
+    @apply !text-base xl:!text-lg !font-normal;
+}
+
+th{
+    @apply !font-bold dark:!text-white whitespace-nowrap;
+}

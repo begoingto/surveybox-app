@@ -1,0 +1,38 @@
+services:
+  surveydb:
+    image: postgres:17.4-alpine
+    environment:
+      POSTGRES_USER: ${DB_USER:-surveybox}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-surveybox}
+      POSTGRES_DB: ${DB_NAME:-surveybox}
+    ports:
+      - "5432:5432"
+    volumes:
+      - surveydb_data:/var/lib/postgresql/data
+
+  # surveyapi:
+  #   build:
+  #     context: .
+  #     dockerfile: api/Dockerfile
+  #   ports:
+  #     - "8080:8080"
+
+  surveyui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${NODE_PORT:-3000}:3000"
+    # depends_on:
+    #   - surveyapi
+    environment:
+      NODE_ENV: ${NODE_ENV:-production}
+    networks:
+      - sirvey_network
+
+networks:
+  sirvey_network:
+    driver: bridge
+volumes:
+  surveydb_data:
+    driver: local

@@ -1,0 +1,19 @@
+.container-img{
+    background: rgb(0,212,255);
+    background: linear-gradient(90deg, rgba(0,212,255,1) 10%, rgba(12,162,249,1) 29%, rgba(27,100,241,1) 49%, rgba(21,74,188,1) 93%);
+    clip-path: polygon(0 0, 100% 0%, 100% 100%, 0 64%);
+    @apply max-h-screen ;
+}
+.container-img-loading{
+    background: gray;
+    /*background: linear-gradient(90deg, rgba(0,212,255,1) 10%, rgba(12,162,249,1) 29%, rgba(27,100,241,1) 49%, rgba(21,74,188,1) 93%);*/
+    clip-path: polygon(0 0, 100% 0%, 100% 100%, 0 64%);
+    @apply max-h-screen ;
+}
+.swiper-pagination{
+    bottom: -50px !important;
+}
+
+.swiper-pagination .swiper-pagination-bullet{
+    @apply h-2 w-2 md:h-3 md:w-3 rounded-full hover:cursor-pointer dark:bg-gray-400;
+}

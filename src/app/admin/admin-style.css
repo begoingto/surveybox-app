@@ -1,0 +1,8 @@
+td,th{
+    font-family: 'Kantumruy Pro', sans-serif !important;
+    @apply !text-base xl:!text-lg !font-normal;
+}
+
+th{
+    @apply !font-bold dark:!text-white;
+}

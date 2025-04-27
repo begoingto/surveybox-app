@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Surveybox - API</title>
+    <meta name="description" content="Collect better data and make better decisions." />
+    <meta name="category" content="SurveyBox" />
+    <meta property="og:title" content="Surveybox - API" />
+    <meta property="og:description" content="Collect better data and make better decisions." />
+    <meta property="og:url" th:content="${clientSide}" />
+    <meta property="og:site_name" content="SURVEYBOX" />
+    <meta property="og:image" th:content="${clientSide}+'/og-image-surveybox.jpg'" />
+    <meta property="og:image:width" content="800" />
+    <meta property="og:image:height" content="600" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="SurveyBox Team " />
+    <meta name="twitter:description" content="Collect better data and make better decisions." />
+    <meta name="twitter:image" th:content="${clientSide}+'/og-image-surveybox.jpg'" />
+    <link rel="icon" th:href="${clientSide}+'/favicon.ico'" type="image/x-icon" sizes="any" />
+    <link rel="stylesheet" th:href="@{/resources/assets/app.css}">
+</head>
+<body>
+<section class="container">
+    <img src="https://images.unsplash.com/photo-1625558298116-38f0173a522c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="" class="image" />
+    <img th:src="${clientSide}+'/surveybox-logo.png'" alt="logo">
+    <header>Welcome to Surveybox API</header>
+    <p>
+        Our free survey maker offers a wide variety of creative pre-made themes for your survey. You can also use our theme designer to create your own themes.
+    </p>
+    <div class="email-content">
+        <div class="input-box">
+            <button>
+                <a th:href="@{${clientSide}}" target="_blank">Our Website</a>
+            </button>
+        </div>
+    </div>
+</section>
+</body>
+</html>

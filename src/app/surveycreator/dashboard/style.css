@@ -1,0 +1,24 @@
+[id="apexchartsbasic-bar"] > svg {
+    @apply !bg-white dark:!bg-gray-900;
+}
+
+[id="apexchartsbasic-bar"] > svg text > tspan{
+    @apply !fill-black  dark:!fill-white;
+}
+
+.apexcharts-menu-item{
+    @apply dark:text-black
+}
+
+.apexcharts-tooltip {
+    @apply text-black
+}
+
+[class~="apexcharts-zoomable"] {
+    @apply !text-black !bg-white dark:!bg-gray-800 dark:!text-white;
+}
+
+[id*="SvgjsText"],
+[className="apexcharts-toolbar"] > [class*="apexcharts"] > svg{
+    @apply !fill-gray-700  dark:!fill-gray-100;
+}

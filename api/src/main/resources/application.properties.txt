@@ -1,0 +1,36 @@
+SERVER_PORT=8080
+
+PG_HOST=localhost
+PG_PORT=5432
+PG_DATABASE=surveybox_db
+PG_USERNAME=postgres
+PG_PASSWORD=root
+
+#File config
+FILE_SERVER_PATH=D:\\istad\\docs-imgs\\server\\surveybox\\
+FILE_SERVER_QRCODE_PATH=D:\\istad\\docs-imgs\\server\\surveybox\\qrcode\\
+FILE_CLIENT_PATH=/file/**
+FILE_SERVER_URL=/file
+FILE_DOWNLOAD_URL=http://localhost:8080/api/v1/files/download/
+FRONTEND_BASE_URL=http://localhost:3000
+FILE_CENTER_URL=
+FILE_THUMBNAIL_URL=
+
+# File size
+MAX_FILE_SIZE=1024KB
+MAX_FILE_REQUEST_SIZE=1024KB
+
+# Mail Configuration
+MAIL_USERNAME=
+MAIL_PASSWORD=
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_STARTTLS_ENABLE=true
+MAIL_STARTTLS_AUTH=true
+MAIL_STARTTLS_REQUIRED=true
+
+# JWT refresh tokens
+ACCESS_TOKEN_PRIVATE_KEY=token-keys/accessTokenPrivate.key
+ACCESS_TOKEN_PUBLIC_KEY=token-keys/accessTokenPublic.key
+REFRESH_TOKEN_PRIVATE_KEY=token-keys/refreshTokenPrivate.key
+REFRESH_TOKEN_PUBLIC_KEY=token-keys/refreshTokenPublic.key

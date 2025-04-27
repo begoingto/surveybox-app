@@ -1,0 +1,84 @@
+services:
+  surveydb:
+    image: postgres:17.4-alpine
+    environment:
+      POSTGRES_USER: ${DB_USER:-surveybox}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-surveybox}
+      POSTGRES_DB: ${DB_NAME:-surveybox}
+    ports:
+      - "5432:5432"
+    volumes:
+      - surveydb_data:/var/lib/postgresql/data
+
+  surveyapi:
+    build:
+      context: .
+      dockerfile: api/Dockerfile.dev
+      args:
+        ARG_PORT: ${SERVER_PORT:-8081}
+    entrypoint:
+      [
+        "java",
+        "-Djava.awt.headless=true",
+        "-jar",
+        "/app/app.jar",
+        "--spring.profiles.active=dev",
+      ]
+    ports:
+      - "${SERVER_PORT:-8081}:${SERVER_PORT:-8081}"
+    volumes:
+      - surveyapi_data:/tmp/files
+    environment:
+      SERVER_PORT: ${SERVER_PORT:-8081}
+      PG_HOST: ${DB_HOST:-surveydb}
+      PG_PORT: ${DB_PORT:-5432}
+      PG_DATABASE: ${DB_NAME:-surveybox}
+      PG_USERNAME: ${DB_USER:-surveybox}
+      PG_PASSWORD: ${DB_PASSWORD:-surveybox}
+      #File config
+      FILE_SERVER_PATH: ${FILE_SERVER_PATH:-/tmp/surveybox/file}
+      FILE_SERVER_QRCODE_PATH: ${FILE_SERVER_QRCODE_PATH:-/tmp/surveybox/qrcode}
+      FILE_CLIENT_PATH: ${FILE_CLIENT_PATH:-/tmp/surveybox/client}
+      FILE_SERVER_URL: ${FILE_SERVER_URL:-http://localhost:8080/file}
+      FILE_DOWNLOAD_URL: ${FILE_DOWNLOAD_URL:-http://localhost:8080/file/download}
+      FRONTEND_BASE_URL: ${FRONTEND_BASE_URL:-http://localhost:3000}
+      FILE_CENTER_URL: ${FILE_CENTER_URL:-http://localhost:8080/file}
+      # File size
+      MAX_FILE_SIZE: ${MAX_FILE_SIZE:-1024KB}
+      MAX_FILE_REQUEST_SIZE: ${MAX_FILE_REQUEST_SIZE:-1024KB}
+      # Mail Configuration
+      MAIL_USERNAME: ${MAIL_USERNAME:-surveybox}
+      MAIL_PASSWORD: ${MAIL_PASSWORD:-surveybox}
+      MAIL_HOST: ${MAIL_HOST:-smtp.example.com}
+      MAIL_PORT: ${MaIL_PORT:-587}
+      MAIL_STARTTLS_AUTH: ${MAIL_STARTTLS_AUTH:-true}
+      MAIL_STARTTLS_ENABLE: ${MAIL_STARTTLS_ENABLE:-true}
+      MAIL_STARTTLS_REQUIRED: ${MAIL_STARTTLS_REQUIRED:-true}
+
+      # JWT refresh tokens
+      ACCESS_TOKEN_PRIVATE_KEY: ${ACCESS_TOKEN_PRIVATE_KEY:-}
+      ACCESS_TOKEN_PUBLIC_KEY: ${ACCESS_TOKEN_PUBLIC_KEY:-}
+      REFRESH_TOKEN_PRIVATE_KEY: ${ACCESS_TOKEN_PRIVATE_KEY:-}
+      REFRESH_TOKEN_PUBLIC_KEY: ${ACCESS_TOKEN_PUBLIC_KEY:-}
+
+  # surveyui:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "${NODE_PORT:-3000}:3000"
+  #   # depends_on:
+  #   #   - surveyapi
+  #   environment:
+  #     NODE_ENV: ${NODE_ENV:-production}
+  #   networks:
+  #     - sirvey_network
+
+networks:
+  sirvey_network:
+    driver: bridge
+volumes:
+  surveydb_data:
+    driver: local
+  surveyapi_data:
+    driver: local

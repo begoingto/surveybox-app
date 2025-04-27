@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.font-kantumruy {
+    font-family: 'Kantumruy Pro', sans-serif;
+}
+
+.cus-navbar > .container {
+    @apply max-w-screen-xl mx-auto flex-nowrap;
+}
+
+[data-testid="flowbite-navbar-collapse"] {
+    @apply bg-white dark:bg-gray-900 absolute top-full left-0 z-50 md:static md:top-0 md:left-auto;
+}
+
+[data-testid="flowbite-navbar-collapse"] > ul {
+    @apply mt-0;
+}
+
+[data-testid="flowbite-navbar-collapse"] > ul > li > a{
+    @apply text-base uppercase;
+}
+.cus-navbar .btn-auth > button{
+    @apply bg-transparent text-black dark:text-white lg:text-white lg:bg-cyan-700;
+}
+.cus-navbar .btn-auth > button > span{
+    @apply p-0 lg:px-4 lg:py-2;
+}
+
+.swiper-wrapper{
+    @apply !w-80 mx-0;
+}
+
+.form-control {
+    @apply bg-blue-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600;
+}
+
+.form-label {
+    @apply block mb-2 text-sm font-medium text-gray-900 dark:text-blue-100;
+}
+
+[aria-label="survey-sidebar"] ul > li > a.none-survey {
+    @apply !text-gray-500 hover:bg-transparent cursor-default;
+}
+
+.animate-spin.text-gray-200.fill-cyan-600 {
+    @apply dark:text-gray-100;
+}
+
+[data-testid="flowbite-avatar"] img {
+    @apply object-cover object-top;
+}
+
+
+[id="apexchartsbasic-bar"] > svg {
+    @apply !bg-white dark:!bg-gray-900;
+}
+
+[id="apexchartsbasic-bar"] > svg text > tspan{
+    @apply !fill-black  dark:!fill-white;
+}
+
+.apexcharts-menu-item{
+    @apply dark:text-black
+}
+
+.apexcharts-tooltip {
+    @apply text-black
+}
+
+[class~="apexcharts-zoomable"] {
+    @apply !text-black !bg-white dark:!bg-gray-800 dark:!text-white;
+}
+
+[id*="SvgjsText"],
+[className="apexcharts-toolbar"] > [class*="apexcharts"] > svg{
+    @apply !fill-gray-700  dark:!fill-gray-100;
+}
+
+.begoingto-react-select > div {
+    @apply dark:bg-gray-800 dark:text-white;
+}
+
+.begoingto-react-select  [class*="singleValue"] {
+    @apply dark:text-white;
+}
+
+.begoingto-react-select  [class*="menu"] [class*="option"] {
+    @apply dark:hover:bg-gray-700 dark:bg-gray-800;
+}
+
+.begoingto-react-select  [class*="Input"] {
+    @apply dark:text-white relative;
+}
+
+.begoingto-react-select  [class*="Input"] > input,
+.begoingto-react-select  [class*="control"] div[data-value] input{
+    @apply absolute top-0 left-0 w-full h-full;
+}
+
+.begoingto-react-select  [class*="control"] div[data-value] {
+    @apply dark:text-white relative;
+}
+
+.apexcharts-legend-text{
+    font-family: 'Kantumruy Pro', sans-serif !important;
+}
+
+[data-testid="dark-theme-toggle"]{
+    @apply focus:!ring-0;
+}
+.none-vote {
+    @apply !text-gray-500 hover:!bg-transparent cursor-default ;
+}

@@ -1,0 +1,23 @@
+[
+    {
+        "id":1,
+        "username": "Education",
+        "image":"/images/feature/education.jpg"
+    },
+    {
+        "id":2,
+        "username": "Banking",
+        "image":"/images/feature/banking.jpg"
+    },
+    {
+        "id":3,
+        "username": "Employee",
+        "image":"/images/feature/employee.jpg"
+    },
+    {
+        "id":4,
+        "username": "Event & Party",
+        "image":"/images/feature/event.jpg"
+    }
+
+]
