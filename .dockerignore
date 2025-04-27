@@ -1,6 +1,7 @@
 # Compiled Output
 dist
 build
+.next
 tmp
 /out-tsc
 
@@ -13,10 +14,9 @@ compose*.yml
 Dockerfile
 
 # IDEs and Editors
-/.idea
+.idea
 .project
 .classpath
-.next
 .c9/
 *.launch
 .settings/
@@ -46,18 +46,6 @@ Thumbs.db
 .editorconfig
 .eslint*
 
-# Generated Files
-.nx
-.swc
-fly.toml
-stats.html
-tools/compose/*
-tools/scripts/*
-
 # Environment Variables
 # *.env*
 !.env.example
-
-# Lingui Compiled Messages
-apps/client/src/locales/_build/
-apps/client/src/locales/*/messages.mjs

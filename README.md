@@ -41,7 +41,7 @@ Our survey platform is a powerful tool that can help you collect data from your 
 
 
 ## How to get our project
-- Git url: https://github.com/cstadservice/surveybox-ui.git
+- Git url: https://github.com/begoingto/surveybox-app.git
 - Clone the project (requirement node version 16 up)
 - Type command: npm install
 - Run project: npm run dev
