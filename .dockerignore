@@ -8,7 +8,7 @@ tmp
 # Project Dependencies
 .git
 .gitignore
-node_modules
+# node_modules
 # Docker
 compose*.yml
 Dockerfile

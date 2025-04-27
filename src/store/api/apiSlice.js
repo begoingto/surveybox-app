@@ -1,13 +1,13 @@
-import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-import {getUnencryptedRefreshToken} from "@/lib/cryptography";
-import {logout, setCredentials, setCurrentUser, setIsGlobalLoading} from "@/store/feature/auth/AuthSlice";
-import {getUserAvatar} from "@/lib/fileBase";
+import { getUnencryptedRefreshToken } from "@/lib/cryptography";
+import { getUserAvatar } from "@/lib/fileBase";
+import { logout, setCredentials, setCurrentUser, setIsGlobalLoading } from "@/store/feature/auth/AuthSlice";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 
 
 const baseQuery = fetchBaseQuery({
     baseUrl: process.env.NEXT_PUBLIC_BASE_URL,
-    prepareHeaders: (headers, {getState}) => {
+    prepareHeaders: (headers, { getState }) => {
         const token = getState().auth.accessToken;
         // headers.set("content-type", "application/json");
         // headers.set('Access-Control-Allow-Origin', '*')
@@ -29,8 +29,8 @@ const baseQueryWithReAuth = async (args, api, extraOptions) => {
                     `${process.env.NEXT_PUBLIC_BASE_URL}/auth/refresh-token`,
                     {
                         method: "POST",
-                        headers: {"Content-Type": "application/json"},
-                        body: JSON.stringify({refreshToken}),
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ refreshToken }),
                     }
                 );
                 const resultResponse = await response.json();
@@ -51,8 +51,8 @@ const baseQueryWithReAuth = async (args, api, extraOptions) => {
                     );
                     const userResult = await userResponse.json();
                     // console.log("userResult", userResult);
-                    api.dispatch(setCurrentUser({...userResult.data ,avatar: getUserAvatar(userResult.data.avatar)}));
-                    if (userResult){
+                    api.dispatch(setCurrentUser({ ...userResult.data, avatar: getUserAvatar(userResult.data.avatar) }));
+                    if (userResult) {
                         api.dispatch(setIsGlobalLoading(false))
                     }
                     result = await baseQuery(args, api, extraOptions);
@@ -77,7 +77,7 @@ export const apiSlice = createApi({
     baseQuery: baseQueryWithReAuth,
     tagTypes: [
         "SurveyBox",
-        "SurveyMonthly",
+        "SurveyMonth",
         'User',
         "Survey",
         'TotalSurvey',

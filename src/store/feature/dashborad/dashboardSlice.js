@@ -26,7 +26,7 @@ export const DashboardSlice = apiSlice.injectEndpoints({
                 method: 'GET',
             }),
             keepUnusedDataFor: 5,
-            providesTags: ['surveyMonth'],
+            providesTags: ['SurveyMonth'],
 
         }),
     }),
@@ -38,5 +38,3 @@ export const {
     useGetSurveyMonthlyQuery,
     useLazyGetAdminMonthlyQuery
 } = DashboardSlice;
-
-

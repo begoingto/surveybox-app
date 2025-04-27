@@ -9,6 +9,8 @@ services:
       - "5432:5432"
     volumes:
       - surveydb_data:/var/lib/postgresql/data
+    networks:
+      - survey_network
 
   surveyapi:
     build:
@@ -26,6 +28,8 @@ services:
       ]
     ports:
       - "${SERVER_PORT:-8081}:${SERVER_PORT:-8081}"
+    depends_on:
+      - surveydb
     volumes:
       - surveyapi_data:/tmp/files
     environment:
@@ -39,10 +43,10 @@ services:
       FILE_SERVER_PATH: ${FILE_SERVER_PATH:-/tmp/surveybox/file}
       FILE_SERVER_QRCODE_PATH: ${FILE_SERVER_QRCODE_PATH:-/tmp/surveybox/qrcode}
       FILE_CLIENT_PATH: ${FILE_CLIENT_PATH:-/tmp/surveybox/client}
-      FILE_SERVER_URL: ${FILE_SERVER_URL:-http://localhost:8080/file}
-      FILE_DOWNLOAD_URL: ${FILE_DOWNLOAD_URL:-http://localhost:8080/file/download}
+      FILE_SERVER_URL: ${FILE_SERVER_URL:-http://localhost:8081/file}
+      FILE_DOWNLOAD_URL: ${FILE_DOWNLOAD_URL:-http://localhost:8081/file/download}
       FRONTEND_BASE_URL: ${FRONTEND_BASE_URL:-http://localhost:3000}
-      FILE_CENTER_URL: ${FILE_CENTER_URL:-http://localhost:8080/file}
+      FILE_CENTER_URL: ${FILE_CENTER_URL:-http://localhost:8081/file}
       # File size
       MAX_FILE_SIZE: ${MAX_FILE_SIZE:-1024KB}
       MAX_FILE_REQUEST_SIZE: ${MAX_FILE_REQUEST_SIZE:-1024KB}
@@ -60,22 +64,23 @@ services:
       ACCESS_TOKEN_PUBLIC_KEY: ${ACCESS_TOKEN_PUBLIC_KEY:-}
       REFRESH_TOKEN_PRIVATE_KEY: ${ACCESS_TOKEN_PRIVATE_KEY:-}
       REFRESH_TOKEN_PUBLIC_KEY: ${ACCESS_TOKEN_PUBLIC_KEY:-}
+    networks:
+      - survey_network
 
-  # surveyui:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - "${NODE_PORT:-3000}:3000"
-  #   # depends_on:
-  #   #   - surveyapi
-  #   environment:
-  #     NODE_ENV: ${NODE_ENV:-production}
-  #   networks:
-  #     - sirvey_network
+  surveyui:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    entrypoint: ["npm", "run", "dev", "--", "-H", "0.0.0.0"]
+    ports:
+      - "${NODE_PORT:-3000}:3000"
+    depends_on:
+      - surveyapi
+    networks:
+      - survey_network
 
 networks:
-  sirvey_network:
+  survey_network:
     driver: bridge
 volumes:
   surveydb_data:
