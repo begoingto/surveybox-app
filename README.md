@@ -3,6 +3,30 @@
 Our survey platform is a powerful tool that can help you collect data from your target audience. With our platform, you can create surveys in minutes, distribute them to your audience, and collect data in real time.
 
 ![Home Page](public/home.jpeg)
+# Get Start Development
+
+Make sure you are installed docker. so you can 
+
+**Noted**: I would like recommend you should be URL configure set your private IP address example: 
+- ```http://localhost:3000``` to ```http://192.168.0.44:3000```
+- ```http://localhost:8081``` to ```http://192.168.0.44:8081```
+
+***
+# Copy `.env.example`
+
+```shell
+cp .env.example .env
+```
+Add some value to variables **follow**
+## ``NEXTAUTH_SECRET`` using `openssl rand -base64 32`
+## ``NEXT_PUBLIC_GOOGLE_CLIENT_ID`` to get https://console.cloud.google.com/apis/credentials 
+## ``NEXT_PUBLIC_SECRET_KEY`` and ``NEXT_PUBLIC_SECURE_LOCAL_STORAGE_PREFIX`` using ```head -c64 /dev/urandom | tr -dc 'A-Za-z0-9~!@`%$^&*='```
+## Mail Configuration you can get from https://mailtrap.io testing
+
+## Docker compose run development
+```shell
+docker compose -f docker-compose.dev.yml up -d
+```
 
 ## Website Url
 - Base URL: http://localhost:3000/
