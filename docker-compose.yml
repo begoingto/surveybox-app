@@ -13,7 +13,7 @@ services:
   surveyapi:
     build:
       context: .
-      dockerfile: api/Dockerfile.dev
+      dockerfile: api/Dockerfile
       args:
         ARG_PORT: ${SERVER_PORT:-8081}
     ports:
