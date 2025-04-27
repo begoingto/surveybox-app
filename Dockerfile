@@ -1,8 +1,10 @@
+ARG $ARG_PORT=8080
+
 FROM node:20-alpine AS base
 WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=development
-EXPOSE 3000
+EXPOSE $ARG_PORT
 
 FROM base AS builder
 COPY package*.json ./

@@ -2,9 +2,11 @@
 
 Our survey platform is a powerful tool that can help you collect data from your target audience. With our platform, you can create surveys in minutes, distribute them to your audience, and collect data in real time.
 
+![Home Page](public/home.jpeg)
+
 ## Website Url
 - Base URL: http://localhost:3000/
-- Deployment: https://surveybox.istad.co
+- Deployment: https://surveybox.com
 - Page URL:
     1. Public Page:
     - Home : /
@@ -32,6 +34,7 @@ Our survey platform is a powerful tool that can help you collect data from your 
   
   Noted:On the card survey, there are icons for sitting, question, share, report, and duplicate,so you can click this icon. It will go to each section.
 
+![Dashboard Page](public/dashboard.jpeg)
     ### 3 . Admin Dashboard Page :
     - Dashboard : /admin/dashboard
     - Question : /admin/question
@@ -60,3 +63,6 @@ Our survey platform is a powerful tool that can help you collect data from your 
   .
   ...
 - Open http://localhost:3000 with your browser to see the result.
+
+![Reports Page](public/reports.jpeg)
+![Compare Reports Page](public/compare-reports.jpeg)

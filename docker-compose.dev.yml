@@ -6,11 +6,25 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD:-surveybox}
       POSTGRES_DB: ${DB_NAME:-surveybox}
     ports:
-      - "5432:5432"
+      - "${DB_PORT:-5432}:5432"
     volumes:
       - surveydb_data:/var/lib/postgresql/data
     networks:
       - survey_network
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "pg_isready",
+          "-U",
+          "${DB_USER:-surveybox}",
+          "-d",
+          "${DB_NAME:-surveybox}",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: always
 
   surveyapi:
     build:
@@ -66,6 +80,11 @@ services:
       REFRESH_TOKEN_PUBLIC_KEY: ${ACCESS_TOKEN_PUBLIC_KEY:-}
     networks:
       - survey_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:${SERVER_PORT:-8081}"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   surveyui:
     build:
