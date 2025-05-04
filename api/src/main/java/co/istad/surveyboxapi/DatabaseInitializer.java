@@ -49,12 +49,12 @@ public class DatabaseInitializer {
             // Assign roles to users if they don't exist
             String sql = """
                 INSERT INTO users_roles (user_id, role_id) 
-                SELECT ?, r.id FROM roles r WHERE r.name = ? 
+                SELECT ?, r.id FROM roles r WHERE r.id = ? 
                 AND NOT EXISTS(SELECT 1 FROM users_roles ur WHERE ur.user_id = ? AND ur.role_id = r.id)
                 """;
-            jdbcTemplate.update(sql, 1, "ADMIN", 1); // Assuming user_id 1 is for
+            jdbcTemplate.update(sql, 1, 1,1); // Assuming user_id 1 is for
             // creator
-            jdbcTemplate.update(sql, 2, "SURVEY_CREATOR", 2); // Assuming user_id 2 is for creator
+            jdbcTemplate.update(sql, 2, 2,2); // Assuming user_id 2 is for creator
 
         };
     }
