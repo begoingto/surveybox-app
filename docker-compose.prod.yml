@@ -5,41 +5,17 @@ services:
       POSTGRES_USER: ${DB_USER:-surveybox}
       POSTGRES_PASSWORD: ${DB_PASSWORD:-surveybox}
       POSTGRES_DB: ${DB_NAME:-surveybox}
-    restart: unless-stopped
     ports:
-      - "${DB_PORT:-5432}:5432"
+      - "5432:5432"
     volumes:
       - surveydb_data:/var/lib/postgresql/data
-    networks:
-      - survey_network
-    healthcheck:
-      test:
-        [
-          "CMD",
-          "pg_isready",
-          "-U",
-          "${DB_USER:-surveybox}",
-          "-d",
-          "${DB_NAME:-surveybox}",
-        ]
-      interval: 30s
-      timeout: 10s
-      retries: 3
 
   surveyapi:
     build:
       context: .
-      dockerfile: api/Dockerfile.dev
+      dockerfile: api/Dockerfile
       args:
         ARG_PORT: ${SERVER_PORT:-8081}
-    entrypoint:
-      [
-        "java",
-        "-Djava.awt.headless=true",
-        "-jar",
-        "/app/app.jar",
-        "--spring.profiles.active=dev",
-      ]
     ports:
       - "${SERVER_PORT:-8081}:${SERVER_PORT:-8081}"
     depends_on:
@@ -54,9 +30,9 @@ services:
       PG_USERNAME: ${DB_USER:-surveybox}
       PG_PASSWORD: ${DB_PASSWORD:-surveybox}
       #File config
-      FILE_SERVER_PATH: ${FILE_SERVER_PATH:-/tmp/surveybox/file}
-      FILE_SERVER_QRCODE_PATH: ${FILE_SERVER_QRCODE_PATH:-/tmp/surveybox/qrcode}
-      FILE_CLIENT_PATH: ${FILE_CLIENT_PATH:-/tmp/surveybox/client}
+      FILE_SERVER_PATH: ${FILE_SERVER_PATH:-/tmp/files}
+      FILE_SERVER_QRCODE_PATH: ${FILE_SERVER_QRCODE_PATH:-/tmp/files/qrcode}
+      FILE_CLIENT_PATH: ${FILE_CLIENT_PATH:-/tmp/client}
       FILE_SERVER_URL: ${FILE_SERVER_URL:-http://localhost:8081/file}
       FILE_DOWNLOAD_URL: ${FILE_DOWNLOAD_URL:-http://localhost:8081/file/download}
       FRONTEND_BASE_URL: ${FRONTEND_BASE_URL:-http://localhost:3000}
@@ -80,37 +56,24 @@ services:
       REFRESH_TOKEN_PUBLIC_KEY: ${ACCESS_TOKEN_PUBLIC_KEY:-}
     networks:
       - survey_network
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:${SERVER_PORT:-8081}"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
 
   surveyui:
-    image: node:20-alpine
-    entrypoint: sh -c "npm install && npm run dev -- -H 0.0.0.0"
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "${NODE_PORT:-3000}:3000"
-    working_dir: /app
-    volumes:
-      - .:/app
     depends_on:
       - surveyapi
     environment:
-      - CHOKIDAR_USEPOLLING=true
+      NODE_ENV: ${NODE_ENV:-production}
     networks:
       - survey_network
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:${NODE_PORT:-3000}"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
 
 networks:
   survey_network:
     driver: bridge
+
 volumes:
   surveydb_data:
-    driver: local
-  surveyapi_data:
     driver: local

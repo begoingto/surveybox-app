@@ -7,7 +7,7 @@ Our survey platform is a powerful tool that can help you collect data from your 
 
 Make sure you are installed docker. so you can 
 
-**Noted**: I would like recommend you should be URL configure set your private IP address example: 
+**Noted**: I would like recommend you should be URL configure set your laptop IP address example: 
 - ```http://localhost:3000``` to ```http://192.168.0.44:3000```
 - ```http://localhost:8081``` to ```http://192.168.0.44:8081```
 
@@ -25,11 +25,15 @@ Add some value to variables **follow**
 
 ## Docker compose run development
 ```shell
-docker compose -f docker-compose.dev.yml up -d
+docker compose -f docker-compose.yml up -d
 ```
 
 ## Website Url
 - Base URL: http://localhost:3000/
+- API URL: http://localhost:8081/api/v1 
+- Users:
+  - ```admin@surveybox.com``` password: ```Admin@12345```
+  - ```creator@surveybox.com``` password: ```Admin@12345```
 - Deployment: https://surveybox.com
 - Page URL:
     1. Public Page:
