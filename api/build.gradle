@@ -63,6 +63,9 @@ dependencies {
 
 	// Template engin
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+	// loki support 
+	implementation 'com.github.loki4j:loki-logback-appender:1.6.0'
 }
 
 tasks.named('test') {

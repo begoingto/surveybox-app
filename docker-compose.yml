@@ -1,6 +1,7 @@
 services:
   surveydb:
     image: postgres:17.4-alpine
+    container_name: surveydb
     environment:
       POSTGRES_USER: ${DB_USER:-surveybox}
       POSTGRES_PASSWORD: ${DB_PASSWORD:-surveybox}
@@ -32,6 +33,7 @@ services:
       dockerfile: api/Dockerfile.dev
       args:
         ARG_PORT: ${SERVER_PORT:-8081}
+    container_name: surveyapi
     entrypoint:
       [
         "java",
@@ -88,7 +90,8 @@ services:
 
   surveyui:
     image: node:20-alpine
-    entrypoint: sh -c "npm install && npm run dev -- -H 0.0.0.0"
+    container_name: surveyui
+    entrypoint: sh -c "npm install && npm run build && npm run start -- -H 0.0.0.0"
     ports:
       - "${NODE_PORT:-3000}:3000"
     working_dir: /app
@@ -115,6 +118,22 @@ services:
       interval: 30s
       timeout: 10s
       retries: 5
+
+  loki:
+    image: grafana/loki:latest
+    container_name: loki
+    ports:
+      - "3100:3100"
+    networks:
+        - survey_network
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3001:3000"
+    networks:
+      - survey_network
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
 
 networks:
   survey_network:
